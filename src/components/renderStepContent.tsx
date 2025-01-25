@@ -7,7 +7,7 @@ const renderStepContent: RenderStepContentType = (
   step,
   { register, errors, getValues }
 ) => {
-  console.log("calnader", calanderIcon);
+  // console.log("calnader", calanderIcon);
   switch (step) {
     case Step.DETAILS:
       return (

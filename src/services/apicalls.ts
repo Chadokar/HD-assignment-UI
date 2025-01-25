@@ -11,7 +11,7 @@ async function axiosPost(url: string, body: object) {
     const response = await axios.post(url, config, body);
     return response.data;
   } catch (error: any) {
-    console.error(error);
+    // console.error(error);
     return error;
   }
 }
@@ -42,7 +42,7 @@ async function axiosDelete(url: string) {
     const response = await axios.delete(url, config);
     return response.data;
   } catch (error: any) {
-    console.error(error);
+    // console.error(error);
     return error;
   }
 }

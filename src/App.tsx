@@ -1,15 +1,13 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { ThemeSwitch } from "./components/theme-switch";
 import axios from "axios";
 import { navigation } from "./lib/navs";
 import RequireAuth from "./components/RequireAuth";
 import logo from "./img/icon.svg";
+import React from "react";
+import { fetchUserData } from "./services/fetchUserData";
+import Errorelement from "./components/Errorelement";
 
 function Iconelement() {
   return (
@@ -27,8 +25,13 @@ function Iconelement() {
 
 function App() {
   axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    fetchUserData(navigate);
+    console.log("token", localStorage.getItem("token"));
+  }, [localStorage.getItem("token")]);
   return (
-    <Router>
+    <>
       <ThemeSwitch />
       <Routes>
         <Route element={<RequireAuth />}>
@@ -51,10 +54,10 @@ function App() {
             ))}
         </Route>
         {/* 404 route */}
-        <Route path="*" element={<h1>404 - Not Found</h1>} />
+        <Route path="*" element={<Errorelement />} />
       </Routes>
       <Toaster position="top-center" />
-    </Router>
+    </>
   );
 }
 

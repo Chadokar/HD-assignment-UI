@@ -23,7 +23,7 @@ const sendOTP: SendOTPType = async (
     toast.success("OTP sent successfully");
     setStep(Step.OTP);
   } catch (error: any) {
-    console.error(error);
+    // console.error(error);
     toast.error(
       error?.response?.data?.message || error?.message || "Failed to send OTP"
     );
@@ -54,7 +54,7 @@ const verifyOTP: VerifyOTPType = async (
     setToken(data.token);
     return data;
   } catch (error: any) {
-    console.error(error);
+    // console.error(error);
     setStep(Step.OTP);
     toast.error(error?.message || "Failed to verify OTP");
   } finally {
@@ -77,7 +77,7 @@ const savePassword: SavePasswordType = async (
 
     navigate("/");
   } catch (error: any) {
-    console.error(error);
+    // console.error(error);
     toast.error(error?.message || "Failed to set password");
   } finally {
     setIsLoading(false);

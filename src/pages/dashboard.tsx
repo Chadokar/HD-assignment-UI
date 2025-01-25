@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
-import { Trash2, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { User } from "@/lib/types";

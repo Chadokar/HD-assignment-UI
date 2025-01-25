@@ -20,10 +20,10 @@ function useGetData<T>(url: string): UseGetDataResponse<T> {
       setError(null);
       try {
         const response = await axios.get(url, config());
-        toast.success("Data fetched successfully");
+        // toast.success("Data fetched successfully");
         setData(response.data);
       } catch (err: any) {
-        console.log(err.status);
+        // console.log(err.status);
         if (err.status === 401) {
           toast.error("Unauthorized access, please login again");
           localStorage.removeItem("token");

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/button";
-import { Loader2, Mail } from "lucide-react";
+import { Loader2 } from "lucide-react";
 // import toast from "react-hot-toast";
 import { SignInForm, Step } from "@/lib/types";
 import { signinSubmit } from "@/services/signincalls";
