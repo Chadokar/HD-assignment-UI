@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+* {
+  font-family: "Inter", serif;
+}
+
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+*:focus {
+  outline: none;
+}
+
+:root {
+  --font-xs: 14px; /* Default font size for mobile */
+  --font-sm: 16px; /* Default font size for mobile */
+  --font-md: 18px; /* Default font size for mobile */
+  --font-lg: 20px; /* Default font size for mobile */
+  --font-xl: 32px; /* Default font size for mobile */
+}
+
+/* For desktop, we increase the size */
+@media (min-width: 768px) {
+  :root {
+    --font-xs: 15px; /* Increase font size for larger screens */
+    --font-sm: 18px; /* Increase font size for larger screens */
+    --font-md: 20px; /* Increase font size for larger screens */
+    --font-lg: 22px; /* Increase font size for larger screens */
+    --font-xl: 40px; /* Increase font size for larger screens */
+  }
+}
+
+/* Completely hide the default calendar icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+/* Hide the default calendar icon for other browsers */
+input[type="date"]::-moz-calendar-picker-indicator {
+  display: none;
+}
