@@ -11,6 +11,7 @@ import { signinSubmit } from "@/services/signincalls";
 import axios from "axios";
 import containerimg from "@/img/container.png";
 import googleIcon from "@/img/google.svg";
+import toast from "react-hot-toast";
 
 function SignIn() {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +19,7 @@ function SignIn() {
   const [step, setStep] = useState(Step.PASSWORD);
   const [currtoken, setToken] = useState("");
   const navigate = useNavigate();
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const {
     register,
@@ -45,9 +47,20 @@ function SignIn() {
   }
 
   async function redirectURL() {
-    axios.get("google/redirect").then((res) => {
+    setIsGoogleLoading(true);
+    try {
+      const res = await axios.get("google/redirect");
+
       window.location.href = res.data.url;
-    });
+    } catch (error: any) {
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to redirect to Google"
+      );
+    } finally {
+      setIsGoogleLoading(false);
+    }
   }
 
   return (
@@ -183,8 +196,14 @@ function SignIn() {
                 // toast.error("Google sign up not implemented yet")
               }}
             >
-              Sign In with Google
-              <img src={googleIcon} alt="Google" className="ml-2 h-6 w-6" />
+              {isGoogleLoading ? (
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+              ) : (
+                <>
+                  Sign In with Google
+                  <img src={googleIcon} alt="Google" className="ml-2 h-6 w-6" />
+                </>
+              )}
             </Button>
           </>
 

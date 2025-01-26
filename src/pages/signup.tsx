@@ -11,12 +11,14 @@ import renderStepContent from "@/components/renderStepContent";
 import containerimg from "@/img/container.png";
 import axios from "axios";
 import googleIcon from "@/img/google.svg";
+import toast from "react-hot-toast";
 
 export default function SignUp() {
   const [step, setStep] = useState<Step>(Step.DETAILS);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [currtoken, setToken] = useState("");
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const {
     register,
@@ -40,9 +42,20 @@ export default function SignUp() {
   }
 
   async function redirectURL() {
-    axios.get("google/redirect").then((res) => {
+    setIsGoogleLoading(true);
+    try {
+      const res = await axios.get("google/redirect");
+
       window.location.href = res.data.url;
-    });
+    } catch (error: any) {
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to redirect to Google"
+      );
+    } finally {
+      setIsGoogleLoading(false);
+    }
   }
   // const simulateAsyncOperation = (duration = 1000) => new Promise((resolve) => setTimeout(resolve, duration));
 
@@ -99,8 +112,18 @@ export default function SignUp() {
                   // toast.error("Google sign up not implemented yet")
                 }}
               >
-                Continue with Google
-                <img src={googleIcon} alt="Google" className="ml-2 h-6 w-6" />
+                {isGoogleLoading ? (
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                ) : (
+                  <>
+                    Continue with Google
+                    <img
+                      src={googleIcon}
+                      alt="Google"
+                      className="ml-2 h-6 w-6"
+                    />
+                  </>
+                )}
               </Button>
             </>
           )}
