@@ -52,7 +52,7 @@ function SignIn() {
 
   return (
     <div className="flex min-h-screen">
-      <div className="flex w-full items-center justify-center p-4 lg:w-2/5">
+      <div className="flex w-full items-start justify-center p-4 lg:w-2/5">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
