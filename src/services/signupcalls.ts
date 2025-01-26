@@ -126,7 +126,7 @@ const onSubmit = async (
     case Step.PASSWORD:
       // TODO: Complete signup
       await savePassword(
-        "signin",
+        "save-password",
         {
           password: data.password as string,
           token: currtoken,
