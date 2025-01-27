@@ -20,6 +20,7 @@ const sendOTP: SendOTPType = async (
   try {
     const res = await axios.post(url, body, config());
     setToken(res.data.token);
+    localStorage.setItem("first", "true");
     toast.success("OTP sent successfully");
     setStep(Step.OTP);
   } catch (error: any) {
@@ -51,6 +52,7 @@ const verifyOTP: VerifyOTPType = async (
     );
     setStep(Step.PASSWORD);
     toast.success("OTP verified successfully");
+
     setToken(data.token);
     return data;
   } catch (error: any) {

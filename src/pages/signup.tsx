@@ -12,6 +12,7 @@ import containerimg from "@/img/container.png";
 import axios from "axios";
 import googleIcon from "@/img/google.svg";
 import toast from "react-hot-toast";
+import Loader from "@/components/Loader";
 
 export default function SignUp() {
   const [step, setStep] = useState<Step>(Step.DETAILS);
@@ -58,6 +59,9 @@ export default function SignUp() {
     }
   }
   // const simulateAsyncOperation = (duration = 1000) => new Promise((resolve) => setTimeout(resolve, duration));
+  if ((isGoogleLoading || isLoading) && !localStorage.getItem("first")) {
+    return <Loader text="For first time loading it will take 50-60 seconds" />;
+  }
 
   return (
     <div className="flex min-h-screen">

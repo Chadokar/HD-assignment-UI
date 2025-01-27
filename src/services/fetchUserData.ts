@@ -21,9 +21,7 @@ export async function fetchUserData(navigate: NavigateFunction): Promise<void> {
       }, 1000);
     }
   } catch (error: any) {
-    if (error?.response?.data?.error?.startsWith("Token expired")) {
-      localStorage.removeItem("token");
-    }
+    localStorage.removeItem("token");
     localStorage.removeItem("user");
     toast.error(
       error?.response?.data?.error ||

@@ -51,7 +51,7 @@ const Loader: React.FC<LoaderProps> = ({ text = "Loading" }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mt-4 text-white font-medium"
+            className="mt-4 w-80 text-center text-white font-medium"
           >
             <motion.span
               animate={{ opacity: [1, 0.5, 1] }}

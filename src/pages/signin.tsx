@@ -12,6 +12,7 @@ import axios from "axios";
 import containerimg from "@/img/container.png";
 import googleIcon from "@/img/google.svg";
 import toast from "react-hot-toast";
+import Loader from "@/components/Loader";
 
 function SignIn() {
   const [isLoading, setIsLoading] = useState(false);
@@ -61,6 +62,10 @@ function SignIn() {
     } finally {
       setIsGoogleLoading(false);
     }
+  }
+
+  if ((isGoogleLoading || isLoading) && !localStorage.getItem("first")) {
+    return <Loader text="For first time loading it will take 50-60 seconds" />;
   }
 
   return (

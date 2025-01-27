@@ -15,6 +15,7 @@ const signin = async (
     localStorage.setItem("token", response.data.token);
     localStorage.setItem("user", JSON.stringify(response.data.user));
     toast.success("Signed in successfully");
+    localStorage.setItem("first", "true");
     navigate("/");
     return response.data;
   } catch (error: any) {
